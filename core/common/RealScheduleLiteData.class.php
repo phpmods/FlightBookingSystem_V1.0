@@ -96,27 +96,27 @@ class RealScheduleLiteData extends codondata
 	
 	public function arrivalairport($icao)
 	{
-		$sql = "SELECT DISTINCT arricao FROM phpvms_schedules WHERE depicao = '$icao'";
+		$sql = "SELECT DISTINCT arricao FROM ".TABLE_PREFIX."schedules WHERE depicao = '$icao'";
 		
 		return DB::get_results($sql);
 	}
 	
 	public function routeaircraft($icao)
 	{
-		$sql = "SELECT DISTINCT aircraft FROM phpvms_schedules WHERE depicao = '$icao'";
+		$sql = "SELECT DISTINCT aircraft FROM ".TABLE_PREFIX."schedules WHERE depicao = '$icao'";
 		
 		return DB::get_results($sql);
 	}
 	
 	public static function getAircraftByIcao($icao)
 	{
-		$sql = "SELECT * FROM phpvms_aircraft WHERE icao ='$icao'";
+		$sql = "SELECT * FROM ".TABLE_PREFIX."aircraft WHERE icao ='$icao'";
 		return DB::get_row($sql);
 	}
 	
 	public static function getAircraftByID($id)
 	{
-		$sql = "SELECT * FROM phpvms_aircraft WHERE id ='$id'";
+		$sql = "SELECT * FROM ".TABLE_PREFIX."aircraft WHERE id ='$id'";
 		return DB::get_row($sql);
 	}
 }
