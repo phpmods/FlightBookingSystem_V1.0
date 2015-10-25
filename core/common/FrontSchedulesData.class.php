@@ -12,7 +12,7 @@
 class FrontSchedulesData extends CodonData
 {
     public function findschedules($arricao, $depicao, $airline, $aircraft)   {
-        $query = "SELECT phpvms_schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
+        $query = "SELECT ".TABLE_PREFIX."schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
                FROM phpvms_schedules, phpvms_aircraft
                 WHERE phpvms_schedules.depicao LIKE '$depicao'
                 AND phpvms_schedules.arricao LIKE '$arricao'
@@ -25,7 +25,7 @@ class FrontSchedulesData extends CodonData
 
       
      public function findschedule($arricao, $depicao, $airline)   {
-        $query = "SELECT phpvms_schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
+        $query = "SELECT ".TABLE_PREFIX."schedules.*, phpvms_aircraft.name AS aircraft, phpvms_aircraft.registration
                 FROM phpvms_schedules, phpvms_aircraft
                 WHERE phpvms_schedules.depicao LIKE '$depicao'
                 AND phpvms_schedules.arricao LIKE '$arricao'
@@ -37,14 +37,14 @@ class FrontSchedulesData extends CodonData
  
     public function findaircrafttypes() {
         $query = "SELECT DISTINCT icao
-                FROM phpvms_aircraft";
+                FROM ".TABLE_PREFIX."aircraft";
 
         return DB::get_results($query);
     }
 
     public function findaircraft($aircraft) {
         $query = "SELECT id
-                FROM phpvms_aircraft
+                FROM ".TABLE_PREFIX."aircraft
                 WHERE icao='$aircraft'";
 
         return DB::get_results($query);
@@ -52,7 +52,7 @@ class FrontSchedulesData extends CodonData
 
     public function findcountries() {
         $query = "SELECT DISTINCT country
-                FROM phpvms_airports";
+                FROM ".TABLE_PREFIX."airports";
 
         return DB::get_results($query);
     }
